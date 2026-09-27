@@ -2,10 +2,9 @@
 
 A minimal, static home for public Substack posts at https://blog.jibrilasif.com.
 
-Write and publish as usual at https://jibrilmoinuddin.substack.com. GitHub Actions
-checks the public RSS feed hourly, archives the available article bodies, and
-deploys GitHub Pages. The schedule can be delayed by GitHub. Run **Sync and publish
-blog → Run workflow** for an immediate import. No Substack custom-domain fee,
+Write and publish as usual at https://jibrilmoinuddin.substack.com. The RSS importer
+archives the available public article bodies. GitHub Actions deploys that archive
+to GitHub Pages on every push to main. No Substack custom-domain fee,
 embedded publication, client JavaScript, or third-party RSS proxy is needed.
 
 ## Local development
@@ -36,9 +35,12 @@ add its slug to `excluded` in that file; it will disappear on deployment and sta
 excluded from future imports. Older posts outside the feed window cannot be
 discovered or updated by RSS alone. No private Substack API or credentials are used.
 
-GitHub can disable scheduled workflows after 60 days without repository activity.
-If that happens, re-enable the workflow under Actions or run it manually. New
-imports are committed to the repository, keeping the archive independent of caches.
+Substack currently returns HTTP 403 to this repository’s GitHub-hosted runners.
+RSS import therefore runs locally; publishing the saved archive is independent
+of Substack availability. Run `blog.py sync`, commit `data/posts.json`, and push
+to main to publish an import. Imports are committed, keeping the archive
+independent of caches. Running the Pages workflow manually redeploys the saved
+archive; it does not fetch new posts.
 
 ## Hosting
 

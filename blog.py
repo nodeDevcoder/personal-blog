@@ -4,11 +4,11 @@ import argparse
 import json
 import re
 import shutil
-import subprocess
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from html import escape
 from pathlib import Path
+from urllib.request import Request, urlopen
 from xml.etree.ElementTree import ParseError
 
 import nh3
@@ -152,15 +152,11 @@ def build_site(posts: list[dict], output: Path) -> None:
 
 
 def fetch_feed() -> bytes:
-    # Use the runner's standard HTTP client with its native HTTP/2 support.
-    # No cookies, proxy, browser impersonation, or authentication are used.
-    result = subprocess.run([
-        "curl", "--fail", "--silent", "--show-error", "--proto", "=https",
-        "--max-time", "30", "--max-filesize", str(MAX_FEED_BYTES),
-        "--user-agent", "JibrilBlog/1.0 (blog.jibrilasif.com)",
-        "--header", "Accept: application/rss+xml", PUBLICATION + "/feed",
-    ], check=True, capture_output=True, timeout=35)
-    return result.stdout
+    request = Request(PUBLICATION + "/feed", headers={"User-Agent": "JibrilBlog/1.0 (blog.jibrilasif.com)", "Accept": "application/rss+xml"})
+    with urlopen(request, timeout=30) as response:
+        if response.url.rstrip("/") != PUBLICATION + "/feed":
+            raise ValueError("Unexpected RSS redirect")
+        return response.read(MAX_FEED_BYTES + 1)
 
 
 def main() -> None:

@@ -42,6 +42,13 @@ to main to publish an import. Imports are committed, keeping the archive
 independent of caches. Running the Pages workflow manually redeploys the saved
 archive; it does not fetch new posts.
 
+The personal Mac runs `scripts/sync-local.sh` hourly through the LaunchAgent
+`com.jibrilasif.blog-sync`, using a dedicated clone in
+`~/.local/share/jibril-blog-sync`. It also runs at login. The Mac must be awake,
+online, and logged in for imports; GitHub Pages remains online independently.
+Logs are in `~/Library/Logs/JibrilBlogSync/`. The job uses the existing GitHub
+credential helper; no Substack password or browser session is needed.
+
 ## Hosting
 
 GitHub Pages uses the Actions deployment source and custom domain

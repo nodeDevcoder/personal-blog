@@ -1,0 +1,52 @@
+@font-face {
+  font-family: "Reckless";
+  src: url("/fonts/reckless-standard-m-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html {
+  color-scheme: light;
+  background: #fff;
+  color: #202020;
+  font-family: "Reckless", Georgia, serif;
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body { margin: 0; }
+main {
+  width: min(100%, 39rem);
+  margin-inline: auto;
+  padding: clamp(4rem, 14vh, 8rem) 1.5rem 4rem;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+h1, h2, h3, h4, h5, h6 { font-weight: 400; line-height: 1.2; }
+h1 { margin: 0 0 1rem; font-size: 1.9rem; letter-spacing: -.02em; }
+h2 { margin: 2rem 0 1rem; font-size: 1.6rem; }
+h3 { margin: 1.75rem 0 1rem; font-size: 1.35rem; }
+p { margin: 0 0 1.25rem; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+a:hover { text-decoration: none; }
+a:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+nav { margin-bottom: 2.5rem; font-size: 1rem; }
+header { margin-bottom: 2.5rem; }
+.date, .posts time, .source { color: #666; font-size: 1rem; }
+.posts { list-style: none; margin: 3rem 0; padding: 0; }
+.posts li { margin-bottom: 1.75rem; }
+.posts time { display: block; margin-top: .2rem; }
+.source { margin-top: 3rem; }
+footer { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 4rem; font-size: 1rem; }
+.prose img { display: block; max-width: 100%; height: auto; margin: 1.75rem auto; }
+.prose figure { margin: 2rem 0; }
+.prose figcaption { color: #666; font-size: 1rem; }
+.prose blockquote { margin: 1.5rem 0; padding-left: 1.25rem; border-left: 1px solid #ccc; }
+.prose pre { overflow-x: auto; padding: 1rem; background: #f7f7f7; font-size: .9rem; }
+.prose code { font-size: .85em; }
+.prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.prose td, .prose th { padding: .5rem; border-bottom: 1px solid #ddd; text-align: left; }
+.prose hr { border: 0; border-top: 1px solid #ddd; margin: 2rem 0; }
